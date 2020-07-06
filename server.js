@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 
 const app = express();
 
@@ -8,7 +9,11 @@ app.use(express.urlencoded({ extend: true }));
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  res.sendFile(path.join(__dirname, "./develop/public/index.html"));
+});
+
+app.get("/notes", (req, res) => {
+  res.sendFile(path.join(__dirname, "./develop/public/notes.html"));
 });
 
 app.listen(PORT, (req, res) => {
