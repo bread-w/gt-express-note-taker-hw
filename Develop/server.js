@@ -21,10 +21,14 @@ app.get("/api/notes", (req, res) => {
 
 app.post("/api/notes", (req, res) => {
   fs.readFile("./db/db.json", "utf-8", (err, data) => {
+    if (err) {
+      console.log("Weird... There's nothing to read...");
+    }
     db = JSON.parse(data);
-    const note = { ...req.body, id: db.length };
+    const note = { ...req.body, id: "Note #" + (db.length + 1) };
+    console.log(note);
     db.push(note);
-    fs.writeFile("./db/db.json", JSON.stringify(), (err) => {
+    fs.writeFile("./db/db.json", JSON.stringify(db), (err) => {
       if (err) {
         console.log("Oops! There's been an error saving your note!");
       }
