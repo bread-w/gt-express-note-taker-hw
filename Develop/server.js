@@ -22,7 +22,7 @@ app.get("/api/notes", (req, res) => {
 app.post("/api/notes", (req, res) => {
   fs.readFile("./db/db.json", "utf-8", (err, data) => {
     if (err) {
-      console.log("Weird... There's nothing to read...");
+      console.log("Uh oh! There's been an error reading your note!");
     }
     db = JSON.parse(data);
     const note = { ...req.body, id: "Note #" + (db.length + 1) };
@@ -36,6 +36,10 @@ app.post("/api/notes", (req, res) => {
     });
   });
 });
+
+// app.delete("/api/notes/:id", (req, res) => {
+
+// });
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "./public/index.html"));
