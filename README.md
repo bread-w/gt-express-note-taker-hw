@@ -13,16 +13,26 @@
 * [Questions](#questions)
 
 ## Description
-```
-This command line application generates a software engineering team html roster based on a user's response to various prompts within the terminal. Upon answering each prompt and choosing a license, a team.html file will be generated for the user that is viewable in the output folder.
-```
+
+This express based application allows the user to write notes, and save them to view at a later time. Additionally, the user can delete notes if they no longer need them.
+
 ## Installation
-```md
-Clone the GitHub repository and then open your terminal. Using the terminal, navigate to the appropriate file path for your app.js file. In the correct file location, run 'node -v' in your terminal to determine that your node version is either v12.1 or higher. Next run 'npm install' to install any required dependencies on your local machine. Once installed, run 'node app-js' and follow the prompts from the terminal. You can find your generated software engineering team roster in team.html in the output folder included in the repository.
-```
+
+### To use in VScode
+1. Navigate to where you'd like to store the note taker app on your local. 
+2. Using the terminal, clone the github repository to the desired path.
+3. Next run 'npm install express' to install any required dependencies on your local machine. 
+4. Once installed, run 'node server-js' and navigate to generated URL on port 3000 and view in default browser.
+
+### To use in Heroku
+1. Navigate to the URL section of this README and open the heroku server.
+2. The note taker app is available to use here without any additional modifications.
+
 ## Usage
 
-![generatedREADME](./assets/exampleTeam.png)
+![expressNoteTaker1](./public/assets/notetaker1.png)
+
+![expressNoteTaker1](./public/assets/notetaker2.png)
 
 ## Credits
 ```
@@ -30,9 +40,9 @@ This was created by Brad Williams for the Georgia Tech Web Development Bootcamp.
 ```
 
 ## Contributing
-```
+
 Pull requests are welcome. If you would like to make any major changes to the code, please contact me first to open a discussion. My GitHub link and email are listed below.
-```
+
 ## License
 
 Copyright (c) [2020] [Brad Williams]
@@ -45,9 +55,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 ## URL
 
-[Link to GitHub repository]()
+[Link to GitHub repository](https://github.com/bread-w/gt-express-note-taker-hw)
 
-[Link to Video walkthrough]()
+[Link to Heroku URL](https://gt-express-note-taker-hw.herokuapp.com/)
 
 ## Questions
 
