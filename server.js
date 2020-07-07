@@ -16,7 +16,13 @@ app.get("/notes", (req, res) => {
 });
 
 app.get("/api/notes", (req, res) => {
-  res.json(db);
+  fs.readFile("./db/db.json", "utf-8", (err, data) => {
+    if (err) {
+      console.log("Uh oh! There's been an error reading your note!");
+    }
+    db = JSON.parse(data);
+    res.json(db);
+  });
 });
 
 app.post("/api/notes", (req, res) => {
@@ -25,8 +31,8 @@ app.post("/api/notes", (req, res) => {
       console.log("Uh oh! There's been an error reading your note!");
     }
     db = JSON.parse(data);
-    const note = { ...req.body, id: "Note #" + (db.length + 1) };
-    console.log(note);
+    const note = { ...req.body, id: "note" + (db.length + 1) };
+    // console.log(note);
     db.push(note);
     fs.writeFile("./db/db.json", JSON.stringify(db), (err) => {
       if (err) {
@@ -37,9 +43,24 @@ app.post("/api/notes", (req, res) => {
   });
 });
 
-// app.delete("/api/notes/:id", (req, res) => {
-
-// });
+app.delete("/api/notes/:id", (req, res) => {
+  fs.readFile("./db/db.json", "utf-8", (err, data) => {
+    if (err) {
+      console.log("Error deleting your note");
+    }
+    db = JSON.parse(data);
+    console.log(db);
+    console.log(req.params.id);
+    const newDb = db.filter((note) => note.id !== req.params.id);
+    console.log("newDb", newDb);
+    fs.writeFile("./db/db.json", JSON.stringify(newDb), (err) => {
+      if (err) {
+        console.log("Oops! There's been an error saving your note!");
+      }
+      res.json(newDb);
+    });
+  });
+});
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "./public/index.html"));
