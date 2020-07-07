@@ -20,11 +20,16 @@ app.get("/api/notes", (req, res) => {
 });
 
 app.post("/api/notes", (req, res) => {
-  fs.writeFile("./db/db.json", JSON.stringify(), (err) => {
-    if (err) {
-      console.log("Oops! There's been an error saving your note!");
-    }
-    res.json(db);
+  fs.readFile("./db/db.json", "utf-8", (err, data) => {
+    db = JSON.parse(data);
+    const note = { ...req.body, id: db.length };
+    db.push(note);
+    fs.writeFile("./db/db.json", JSON.stringify(), (err) => {
+      if (err) {
+        console.log("Oops! There's been an error saving your note!");
+      }
+      res.json(db);
+    });
   });
 });
 
